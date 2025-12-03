@@ -50,20 +50,25 @@ class Lock:
 		for i in range(100):
 			self.lock.append(i)
 		self.cur_pos = self.lock.find(50)
+		self.count = 0
 	
 	def rotateLeft(self, number):
 		if self.cur_pos == None:
 			self.cur_pos = self.head
 		
-		for i in range (number):
+		for _ in range (number):
 			self.cur_pos = self.cur_pos.prev
+			if self.cur_pos.data == 0:
+				self.count += 1
 
 	def rotateRight(self, number):
 		if self.cur_pos == None:
 			self.cur_pos = self.head
 		
-		for i in range (number):
+		for _ in range (number):
 			self.cur_pos = self.cur_pos.next
+			if self.cur_pos.data == 0:
+				self.count += 1
 	
 	def checkZero(self):
 		return self.cur_pos.data == 0
@@ -91,6 +96,7 @@ def main():
 				count += 1
 	
 	print(f"Password: {count}")
+	print(f"Second Password: {lock.count}")
 
 if __name__ == '__main__':
 	main()
